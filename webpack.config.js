@@ -20,6 +20,9 @@ module.exports = {
             filename: 'styles.[contenthash].css'
         }),
     ],
+    devServer: {
+        port: 2007,
+    },
     module: {
         rules: [
             {
