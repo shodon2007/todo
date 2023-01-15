@@ -14,6 +14,9 @@ body {
 .todo__body {
     width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .todo__add {
@@ -34,7 +37,7 @@ body {
     border: 0;
 
     &:focus {
-        color: white;
+        color: rgba(0, 0, 0, 1);
     }
 
     &::placeholder {
@@ -49,4 +52,31 @@ body {
     font-size: 32px;
     padding: 0 20px;
     color: white;
+}
+
+.todo__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todo__item {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 30px;
+    padding: 20px 20px;
+}
+
+.item__left {
+    font-size: 26px;
+    color: white;
+}
+
+.item__right {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: white;
+    font-size: 26px;
 }
