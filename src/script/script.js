@@ -16,8 +16,8 @@ function showList() {
         list.forEach((item, index) => {
             item = getTime(item);
             domList.innerHTML += `
-            <div class="todo__item">
-                <div class="item__left">
+            <div class="todo__item item${index}">
+                <div class="item__left" onclick="crossOut(${index})">
                     ${++index}. ${item}
                 </div>
                 <div class="item__right">
@@ -38,10 +38,17 @@ function addClick() {
     if (input.value !== "") {
         let date = new Date();
         list.push(input.value + 'date' + date.getHours() + '.' + date.getMinutes());
+        localStorage.setItem('list', list);
+        addList(list.length - 1, list[list.length - 1]);
+        input.value = '';
     }
+}
+
+window.deleteItem = index => {
+    list.splice(index -= 1, 1);
+    console.log(list)
     localStorage.setItem('list', list);
-    addList(list.length - 1, list[list.length - 1]);
-    input.value = '';
+    showList();
 }
 
 function getTime(str) {
@@ -55,8 +62,8 @@ function getTime(str) {
 function addList(index, item) {
     item = getTime(item);
     domList.innerHTML += `
-            <div class="todo__item">
-                <div class="item__left">
+            <div class="todo__item item${index}">
+                <div class="item__left" onclick="crossOut(${index})">
                     ${++index}. ${item}
                 </div>
                 <div class="item__right">
@@ -66,6 +73,10 @@ function addList(index, item) {
                     <div class="item__delete" onclick="deleteItem(${index})">X</div>
                 </div>
             </div>`;
+}
+
+window.crossOut = index => {
+    document.querySelector(`.item${index}`).classList.toggle('line');
 }
 
 addButton.addEventListener('click', addClick);
