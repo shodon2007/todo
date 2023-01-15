@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
-    entry: './index.js',
+    entry: './index.jsx',
     output: {
         filename: '[name][contenthash].js',
         path: path.resolve(__dirname, 'dist'),
@@ -36,6 +36,16 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\jsx$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
             }
