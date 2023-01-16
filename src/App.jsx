@@ -8,8 +8,10 @@ const App = () => {
         storage = [];
     }
 
-    const [list, setList] = useState(storage);
+    let [list, setList] = useState(storage);
     let [input, setInput] = useState('');
+
+
     return (
         <div className="todo__body">
             <div className="todo__add">
@@ -34,13 +36,22 @@ const App = () => {
                 {list.map((item, index) => {
                     return <div className='todo__item' key={Math.random()}>
                         <div className="item__left">
-                            {index}. {item.slice(0, item.lastIndexOf('date'))}
+                            {++index}. {item.slice(0, item.lastIndexOf('date'))}
                         </div>
                         <div className="item__right">
                             <div className='item__time'>
                                 {item.slice(item.lastIndexOf('date') + 4)}
                             </div>
-                            <div className="item__delete">X</div>
+                            <div className="item__delete" onClick={() => {
+                                setInput('deleted ' + item.slice(0, item.lastIndexOf('date')))
+                                if (list.length == 1) {
+                                    list = [];
+                                } else {
+                                    list.splice(index, 1);
+                                }
+                                setList(list);
+                                localStorage.setItem('list', list);
+                            }}>X</div>
                         </div>
                     </div>
                 })}
