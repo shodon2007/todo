@@ -43,12 +43,7 @@ const App = () => {
                                 {item.slice(item.lastIndexOf('date') + 4)}
                             </div>
                             <div className="item__delete" onClick={() => {
-                                setInput('deleted ' + item.slice(0, item.lastIndexOf('date')))
-                                if (list.length == 1) {
-                                    list = [];
-                                } else {
-                                    list.splice(index, 1);
-                                }
+                                list.splice(index, 1);
                                 setList(list);
                                 localStorage.setItem('list', list);
                             }}>X</div>
