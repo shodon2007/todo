@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const App = () => {
     let storage;
-    if (localStorage.getItem('list') !== null) {
+    if (localStorage.getItem('list') != null) {
         storage = localStorage.getItem('list').split(',');
     } else {
         storage = [];
@@ -20,7 +20,14 @@ const App = () => {
                     type="text"
                     placeholder="your todo"
                     value={input}
-                    onChange={e => setInput(e.target.value)}
+                    onChange={e => {
+                        setInput(e.target.value);
+                        if (list.length == 0) {
+                            localStorage.clear();
+                        } else {
+                            localStorage.setItem('list', list);
+                        }
+                    }}
                 />
                 <button className="todo__button" onClick={() => {
                     if (input != '') {
@@ -28,7 +35,11 @@ const App = () => {
                         list.push(input + 'date' + date.getHours() + ':' + date.getMinutes());
                         setList(list);
                         setInput('');
-                        localStorage.setItem('list', list);
+                        if (list.length == 0) {
+                            localStorage.clear();
+                        } else {
+                            localStorage.setItem('list', list);
+                        }
                     }
                 }}>add</button>
             </div>
@@ -43,9 +54,12 @@ const App = () => {
                                 {item.slice(item.lastIndexOf('date') + 4)}
                             </div>
                             <div className="item__delete" onClick={() => {
-                                list.splice(index, 1);
-                                setList(list);
-                                localStorage.setItem('list', list);
+                                setList(list.filter(i => i != item));
+                                if (list.length == 0) {
+                                    localStorage.clear();
+                                } else {
+                                    localStorage.setItem('list', list);
+                                }
                             }}>X</div>
                         </div>
                     </div>
