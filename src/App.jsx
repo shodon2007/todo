@@ -12,8 +12,25 @@ const App = () => {
     let [input, setInput] = useState('');
 
 
+    function add() {
+        if (input != '') {
+            const date = new Date();
+            list.push(input + 'date' + date.getHours() + ':' + date.getMinutes());
+            setList(list);
+            setInput('');
+            if (list.length == 0) {
+                localStorage.clear();
+            } else {
+                localStorage.setItem('list', list);
+            }
+        }
+    }
     return (
-        <div className="todo__body">
+        <div className="todo__body" onKeyDown={(e) => {
+            if (e.keyCode == 13) {
+                add();
+            }
+        }}>
             <div className="todo__add">
                 <input
                     className="todo__input"
@@ -29,24 +46,12 @@ const App = () => {
                         }
                     }}
                 />
-                <button className="todo__button" onClick={() => {
-                    if (input != '') {
-                        const date = new Date();
-                        list.push(input + 'date' + date.getHours() + ':' + date.getMinutes());
-                        setList(list);
-                        setInput('');
-                        if (list.length == 0) {
-                            localStorage.clear();
-                        } else {
-                            localStorage.setItem('list', list);
-                        }
-                    }
-                }}>add</button>
+                <button className="todo__button" onClick={add}>add</button>
             </div>
             <div className="todo__list">
                 {list.map((item, index) => {
                     return <div className='todo__item' key={Math.random()}>
-                        <div className="item__left">
+                        <div className="item__left" onClick={e => e.currentTarget.classList.toggle('active')}>
                             {++index}. {item.slice(0, item.lastIndexOf('date'))}
                         </div>
                         <div className="item__right">

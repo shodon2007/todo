@@ -84,6 +84,11 @@ body {
     color: white;
 }
 
+.item__left.active {
+    text-decoration: line-through;
+    color: #3b72ff;
+}
+
 .item__right {
     display: flex;
     justify-content: space-between;
