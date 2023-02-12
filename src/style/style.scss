@@ -105,3 +105,60 @@ body {
         color: red;
     }
 }
+
+@media (max-width: 1200px) {
+    .todo__body {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .item__right {
+        font-size: 20px;
+    }
+
+    .item__left {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .todo__body {
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    .todo__input {
+        font-size: 20px;
+        padding: 10px 5px;
+    }
+
+    .todo__button {
+        font-size: 20px;
+        padding: 0 20px;
+        border-radius: 2px;
+    }
+
+    .todo__item {
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .todo__list {
+        gap: 5px;
+    }
+
+    .item__left {
+        font-size: 16px;
+    }
+
+    .item__right {
+        font-size: 16px;
+        gap: 5px;
+    }
+
+    .todo__add {
+        border-radius: 5px;
+    }
+}
