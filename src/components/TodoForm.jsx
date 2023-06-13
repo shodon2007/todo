@@ -8,23 +8,45 @@ import { add } from '../store/todoSlice.js';
 const TodoForm = () => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
+  
+  const mainStyles = {
+    width: '100%',
+    display: 'flex',
+  }
 
-  function addClick() {
+  function addTodoClick() {
     dispatch(add(text));
-    setText('')
+    cleanInputValue();
+  }
+
+  function cleanInputValue() {
+    setText('');
+  }
+
+  function isEnterClicked(key) {
+    return key.keyCode == 13;
+  }
+
+  function buttonClicked(key) {
+    if (isEnterClicked(key)) {
+      addTodoClick();
+    }
+  }
+
+  function changedInput(e) {
+    const inputValue = e.target.value;
+    setText(inputValue);
   }
 
   return (
-    <div onKeyDown={(e) => e.keyCode == 13 && addClick()}>
+    <div onKeyDown={buttonClicked} style={mainStyles}>
       <MyInput 
         type="text"
         placeholder="your todo"
         value={text}
-        onChange={e => {
-            setText(e.target.value);
-        }}
+        onChange={changedInput}
       />
-      <MyButton onClick={addClick}>Add</MyButton>
+      <MyButton onClick={addTodoClick}>add</MyButton>
     </div>
   )
 }

@@ -1,11 +1,10 @@
-import { add, remove, complete } from './store/todoSlice';
-import { useSelector, useDispatch } from 'react-redux'
-import React, { useState } from 'react';
+import React from 'react';
 import TodoForm from './components/TodoForm.jsx';
 import TodoList from './components/TodoList.jsx';
+import styles from './App.module.scss';
 
 const App = () => {
-    return <div>
+    return <div className={styles.app}>
         <TodoForm />
         <TodoList />
     </div>

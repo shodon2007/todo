@@ -5,15 +5,15 @@ import TodoItem from './TodoItem.jsx'
 const TodoList = () => {
   const todos = useSelector(state => state.todos)
 
-  function renderList() {
-    return todos.map(todo => {
-      return <TodoItem todo={todo} key={todo.id} />
-    })
+  function renderTodoList() {
+    return todos.map((todo, index) => {
+      return <TodoItem todo={todo} index={index} key={todo.id} />
+    });
   }
 
   return (
     <div>
-        {renderList()}
+        {renderTodoList()}
     </div>
   )
 }
