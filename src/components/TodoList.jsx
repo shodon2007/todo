@@ -8,10 +8,6 @@ const TodoList = () => {
   const todos = useSelector(state => state.todos);
   const dispatch = useDispatch();
 
-  function toggleComplete(index) {
-    dispatch(complete(index));
-  }
-
   function renderTodoList() {
     return todos.map((todo, index) => {
       return <TodoItem todo={todo} index={index} key={todo.id} />

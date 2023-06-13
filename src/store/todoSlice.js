@@ -1,9 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+function getLocalStorage() {
+    return JSON.parse(localStorage.getItem('todo')) 
+}
+
 export const todoSlice = createSlice({
     name: 'todo',
     initialState: {
-        todos: [],
+        todos: getLocalStorage() || [],
     },
     reducers: {
         add(state, action) {
@@ -11,7 +15,7 @@ export const todoSlice = createSlice({
                 id: Date.now(),
                 text: action.payload,
                 complete: false,
-            })
+            });
         },
 
         remove(state, action) {
