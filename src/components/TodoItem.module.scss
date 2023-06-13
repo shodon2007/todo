@@ -11,10 +11,19 @@
     cursor: pointer;
 }
 
+.completed {
+    background-color: green;
+    text-decoration: line-through;
+}
+
 .right {
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.left {
+    flex: 1 1 auto;
 }
 
 .delete {
@@ -24,4 +33,9 @@
     color: white;
     font-size: 20px;
     cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+        background-color: red;
+    }
 }

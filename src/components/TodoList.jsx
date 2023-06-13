@@ -1,9 +1,16 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import TodoItem from './TodoItem.jsx'
+import { complete } from '../store/todoSlice.js';
+
 
 const TodoList = () => {
-  const todos = useSelector(state => state.todos)
+  const todos = useSelector(state => state.todos);
+  const dispatch = useDispatch();
+
+  function toggleComplete(index) {
+    dispatch(complete(index));
+  }
 
   function renderTodoList() {
     return todos.map((todo, index) => {
